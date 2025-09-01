@@ -1,0 +1,79 @@
+{
+  "name": "pyollama-vscode",
+  "displayName": "PyOllama",
+  "description": "VSCode extension for PyOllama - Python-based LLM runner",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:pyollama.chat",
+    "onCommand:pyollama.generate"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pyollama.chat",
+        "title": "PyOllama: Start Chat"
+      },
+      {
+        "command": "pyollama.generate",
+        "title": "PyOllama: Generate Text"
+      },
+      {
+        "command": "pyollama.listModels",
+        "title": "PyOllama: List Models"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "pyollama.chat",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "pyollama.generate",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "pyollama.listModels"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PyOllama",
+      "properties": {
+        "pyollama.pythonPath": {
+          "type": "string",
+          "default": "python",
+          "description": "Path to Python executable"
+        },
+        "pyollama.modelDir": {
+          "type": "string",
+          "default": "~/.ollama/models",
+          "description": "Directory where models are stored"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1"
+  }
+}
