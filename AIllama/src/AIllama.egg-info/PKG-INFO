@@ -1,0 +1,188 @@
+Metadata-Version: 2.4
+Name: AIllama
+Version: 0.1.0
+Summary: A complete Python implementation of Ollama for running large language models locally
+Author-email: AI Assistant <ai@example.com>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: llama-cpp-python[cuda]
+Requires-Dist: huggingface-hub
+Requires-Dist: numpy
+Requires-Dist: click
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: pydantic
+Requires-Dist: requests
+Requires-Dist: tqdm
+Requires-Dist: psutil
+Requires-Dist: torch
+Requires-Dist: transformers
+Requires-Dist: accelerate
+Requires-Dist: sentencepiece
+Requires-Dist: protobuf
+
+# AIllama
+
+A complete Python implementation of Ollama for running large language models locally.
+
+## Features
+
+- Run LLMs locally using llama.cpp and transformers
+- Download models from Hugging Face
+- Generate text with models
+- Interactive chat with models
+- Generate embeddings
+- Show model information
+- Delete models
+- Cross-platform support (Windows, macOS, Linux)
+- REST API compatible with Ollama
+
+## Installation
+
+### From Source
+
+1. Clone this repository
+2. Install dependencies:
+   ```bash
+   pip install -e .
+   ```
+
+### Using pip (after publishing)
+
+```bash
+pip install AIllama
+```
+
+## Usage
+
+### Command Line Interface (CLI)
+
+```bash
+# List available models
+AIllama list
+
+# Pull a model from Hugging Face (e.g., llama2:7b)
+AIllama pull llama2:7b
+
+# Generate text
+AIllama generate llama2:7b "Hello, how are you?"
+
+# Start interactive chat
+AIllama chat llama2:7b
+
+# Generate embeddings
+AIllama embed llama2:7b "This is a test sentence"
+
+# Show model information
+AIllama show llama2:7b
+
+# Delete a model
+AIllama delete llama2:7b
+
+# List running models
+AIllama ps
+```
+
+### Python API
+
+```python
+from AIllama import AIllama
+
+client = AIllama()
+
+# List models
+models = client.list_models()
+
+# Generate text
+response = client.generate("llama2:7b", "Hello, world!")
+
+# Chat
+messages = [{"role": "user", "content": "Hello!"}]
+response = client.chat("llama2:7b", messages)
+```
+
+### REST API
+
+AIllama provides a REST API compatible with Ollama:
+
+```bash
+# Start the API server
+AIllama serve
+
+# Then use curl or any HTTP client
+curl http://localhost:11434/api/tags
+curl -X POST http://localhost:11434/api/generate -d '{"model": "llama2:7b", "prompt": "Hello"}'
+```
+
+## Requirements
+
+- Python 3.8+
+- Internet connection for downloading models
+- Sufficient RAM (4GB+ recommended for small models, 16GB+ for larger models)
+
+## Supported Model Formats
+
+- GGUF files (recommended for llama.cpp)
+- Hugging Face model repositories
+- Models from Hugging Face repositories
+
+## Model Registry
+
+AIllama includes a registry of popular models:
+
+- **Llama models**: `llama2:7b`, `llama2:13b`, `llama2:70b`, `llama3:8b`, `llama3:70b`
+- **Mistral models**: `mistral:7b`, `mixtral:8x7b`
+- **Other models**: `phi:2`, `gemma:7b`, `qwen:7b`, `codellama:7b`
+
+## Configuration
+
+AIllama can be configured via environment variables or a config file:
+
+```bash
+export AIllama_MODEL_DIR=/path/to/models
+export AIllama_GPU_LAYERS=35
+export AIllama_CONTEXT_LENGTH=4096
+```
+
+Or create `~/.AIllama/config.json`:
+
+```json
+{
+  "model_dir": "/path/to/models",
+  "gpu_layers": 35,
+  "context_length": 4096,
+  "temperature": 0.8
+}
+```
+
+## Architecture
+
+AIllama consists of several key components:
+
+- **ModelManager**: Handles model downloading and storage
+- **InferenceEngine**: Manages model loading and text generation
+- **Config**: Configuration management
+- **CLI**: Command-line interface
+- **API Server**: REST API server (planned)
+
+## Development
+
+To contribute to AIllama:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+## License
+
+MIT License
+
+## Acknowledgments
+
+- Based on the Ollama project
+- Uses llama.cpp for GGUF model inference
+- Uses transformers library for Hugging Face models
+- Inspired by the original Ollama implementation

@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+src/AIllama/__init__.py
+src/AIllama/cli.py
+src/AIllama/core.py
+src/AIllama.egg-info/PKG-INFO
+src/AIllama.egg-info/SOURCES.txt
+src/AIllama.egg-info/dependency_links.txt
+src/AIllama.egg-info/entry_points.txt
+src/AIllama.egg-info/requires.txt
+src/AIllama.egg-info/top_level.txt
+src/pyollama/__init__.py
+src/pyollama/config.py
+src/pyollama/core.py
+src/pyollama/inference_engine.py
+src/pyollama/model_manager.py

@@ -1,0 +1,15 @@
+llama-cpp-python[cuda]
+huggingface-hub
+numpy
+click
+fastapi
+uvicorn
+pydantic
+requests
+tqdm
+psutil
+torch
+transformers
+accelerate
+sentencepiece
+protobuf

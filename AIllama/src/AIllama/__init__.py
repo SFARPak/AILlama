@@ -9,5 +9,6 @@ __description__ = "A complete Python implementation of Ollama for running large 
 from .core import AIllama
 from .model_manager import ModelManager
 from .inference_engine import InferenceEngine
+from .types import ModelInfo, GenerateResponse, ChatResponse, ChatMessage
 
-__all__ = ["AIllama", "ModelManager", "InferenceEngine"]
+__all__ = ["AIllama", "ModelManager", "InferenceEngine", "ModelInfo", "GenerateResponse", "ChatResponse", "ChatMessage"]

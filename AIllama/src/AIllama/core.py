@@ -8,47 +8,9 @@ import logging
 from .model_manager import ModelManager
 from .inference_engine import InferenceEngine
 from .config import Config
+from .types import ModelInfo, GenerateResponse, ChatResponse
 
 logger = logging.getLogger(__name__)
-
-
-@dataclass
-class ModelInfo:
-    name: str
-    size: int
-    path: str
-    modified_at: str
-    format: str
-    parameters: Optional[Dict[str, Any]] = None
-
-
-@dataclass
-class GenerateResponse:
-    response: str
-    done: bool
-    context: Optional[List[int]] = None
-    total_duration: Optional[int] = None
-    load_duration: Optional[int] = None
-    prompt_eval_count: Optional[int] = None
-    eval_count: Optional[int] = None
-    eval_duration: Optional[int] = None
-
-
-@dataclass
-class ChatMessage:
-    role: str
-    content: str
-
-
-@dataclass
-class ChatResponse:
-    message: ChatMessage
-    done: bool
-    total_duration: Optional[int] = None
-    load_duration: Optional[int] = None
-    prompt_eval_count: Optional[int] = None
-    eval_count: Optional[int] = None
-    eval_duration: Optional[int] = None
 
 
 class AIllama:
